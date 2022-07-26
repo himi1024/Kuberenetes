@@ -1,0 +1,35 @@
+----------------------------------------
+Create a pod to run(including image)
+kubectl run nginx --image=nginx
+----------------------------------------
+Create a pod-definition.yaml file
+kubectl run nginx --image=nginx --dry-run=client -o -yaml > pod.definition.yaml
+----------------------------------------
+List all the pod in the environment
+kubectl get pods
+----------------------------------------
+Delete the target pod
+kubectl delete pod [pod-name]
+----------------------------------------
+Show details of a target pod
+kubectl describe pod [pod-name]
+-----------------------------------------
+
+**********************************
+Cannot edit a pod which is running
+Solution:
+1. Make a copy of yaml file 
+kubectl get pod [pod-name] -o yaml abc.yaml
+2. Edit the yaml file that are generated
+kubectl edit abc.yaml
+3. Delete the original pod
+kubectl delete pod [pod-name]
+4. Create a new pod using the abc.yaml
+kubectl create -f abc.yaml
+
+
+Other Commands (not for k8s)
+----------------------------------------
+edit/view the specified file
+vim pod-definition.yaml
+----------------------------------------

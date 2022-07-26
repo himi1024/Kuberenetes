@@ -1,0 +1,2 @@
+1. Smallest deployable units 
+2. A group of one/more containers
