@@ -1,0 +1,15 @@
+#1. Node Port:
+This is the simplest service exposure method, where a fixed port is opened on each node and mapped to the service's port.
+Clients can access the service by using the node's IP address and node port.
+The downside is that the same port needs to be opened on each node, limiting the reusability of the nodes.
+
+#2. Load Balancer:
+This method creates a load balancer outside the cluster, which distributes traffic to the corresponding Service.
+The load balancer will have a public IP address, which clients can use to access the service.
+This method can automatically configure load balancing and provides features like health checks and auto-scaling.
+The downside is that it requires additional cloud service provider support, which can be more costly.
+
+#3. Cluster Port:
+This method uses Kubernetes' internal DNS to access the service, without exposing the service to the external network.
+Other Pods within the cluster can access the service by using the service name.
+This method is suitable for inter-service communication within the cluster, but not for exposing the service to the external network.
