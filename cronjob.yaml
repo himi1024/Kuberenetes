@@ -1,0 +1,22 @@
+# vi cronjob.yaml
+# Manually create job with this cronjob - kubectl create job <job-name> --from=cronjob/<cronjob-name>
+
+apiVersion: batch/v1 
+kind: CronJob 
+metadata: 
+  name: ppi 
+spec: 
+  schedule: "*/5 * * * *"              #Execute every 5 minutes
+  successfulJobsHistoryLimit: 2 
+  failedJobsHistoryLimit: 4 
+  jobTemplate:
+     spec: 
+        activeDeadlineSeconds: 8    
+        template: 
+          spec: 
+            containers: 
+            - name: pi 
+              image: perl:5 
+              imagePullPolicy: IfNotPresent 
+              command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"] 
+            restartPolicy: Never   
